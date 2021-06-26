@@ -1,7 +1,8 @@
 enum StateType {
   Idle = 'IDLE',
   DayView = 'DAY_VIEW',
-  MonthView = 'MONTH_VIEW'
+  MonthView = 'MONTH_VIEW',
+  YearView = 'YEAR_VIEW'
 }
 
 enum ActionType {
@@ -13,8 +14,8 @@ type UserClickedInputField = {
   type: ActionType.UserClickedInputField,
 }
 
-type UserClickedInputField = {
-  type: ActionType.UserClickedInputField,
+type UserClickedCalendarButton = {
+  type: ActionType.UserClickedCalendarButton,
 }
 
 type Action = UserClickedInputField

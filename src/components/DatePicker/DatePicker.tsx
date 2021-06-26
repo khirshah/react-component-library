@@ -1,12 +1,14 @@
 import React, { useReducer } from 'react';
 
 import Input from './Input';
-import Calendar from './Calendar';
+import DayView from './DayView';
+import MonthView from './MonthView';
+import YearView from './YearView';
 import stateMachine from './reducers/stateMachine';
 
-import styles from '../../styles.css';
+import '../../styles.css';
 
-import type {
+import {
   ActionType,
   StateType,
 } from './types/stateMachineTypes';
@@ -17,7 +19,7 @@ type DatePickerInput = {
 
 const DatePicker = ({
   id,
-}: DatePickerInput): JSX.element => {
+}: DatePickerInput): JSX.Element => {
   const [state, dispatch] = useReducer(stateMachine, { currentStatus: StateType.Idle });
 
   const handleCalendarButtonClick = () => {
@@ -27,11 +29,19 @@ const DatePicker = ({
   };
 
   return (
-    <div className={styles.datePicker}>
-      <Input id={id} handleClick={handleCalendarButtonClick}/>
-      <div className={styles.calendar}>
-        
-      </div>
+    <div className="datePicker">
+      <Input id={id} handleClick={handleCalendarButtonClick} />
+      { state.currentStatus !== StateType.Idle
+        && (
+        <div className="calendar">
+          { state.currentStatus === StateType.DayView
+          && <DayView />}
+          { state.currentStatus === StateType.MonthView
+          && <MonthView />}
+          { state.currentStatus === StateType.YearView
+          && <YearView />}
+        </div>
+        )}
     </div>
   );
 };

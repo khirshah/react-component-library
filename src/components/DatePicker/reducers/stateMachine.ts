@@ -1,4 +1,4 @@
-import type {
+import {
   Action,
   ActionType,
   State,
@@ -11,6 +11,14 @@ const stateMachine = (
 ): State => {
   switch (action.type) {
     case ActionType.UserClickedInputField:
+      return state;
+    case ActionType.UserClickedCalendarButton:
+      if (state.currentStatus === StateType.Idle) {
+        return {
+          ...state,
+          currentStatus: StateType.DayView,
+        };
+      }
       return {
         ...state,
         currentStatus: StateType.Idle,

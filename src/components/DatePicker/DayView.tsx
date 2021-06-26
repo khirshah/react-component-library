@@ -1,10 +1,11 @@
 import React from 'react';
-import styles from '../../styles.css';
+import '../../styles.css';
 
-const DayView = (): JSX.element => {
+const DayView = (): JSX.Element => {
 
   return (
-    <div className={styles.dayView}>
+    <div className="dayView">
+      Day view
     </div>
   );
 };

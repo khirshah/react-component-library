@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 
-import styles from '../../styles.css';
+import '../../styles.css';
 
 const Input = ({
   id,
@@ -11,18 +11,18 @@ const Input = ({
 {
   id: string,
   handleClick: () => void,
-}): JSX.element => {
+}): JSX.Element => {
   
   return (
     <div>
       <label />
-      <input id={`${id}-input`} className={styles.inputField} />
+      <input id={`${id}-input`} className="inputField" />
       <button
-        className={styles.calendarButton}
+        className="calendarButton"
         type="button"
         onPointerDown={handleClick}
       >
-        <FontAwesomeIcon icon={faCalendar} size="1.5x" />
+        <FontAwesomeIcon icon={faCalendar} size="sm" />
       </button>
     </div>
   );

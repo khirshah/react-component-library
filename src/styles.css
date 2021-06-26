@@ -45,13 +45,13 @@ body {
 }
 
 .dayView {
-
+	background-color: transparent;
 }
 
 .monthView {
-
+	background-color: transparent;
 }
 
 .yearView {
-	
+	background-color: transparent;
 }

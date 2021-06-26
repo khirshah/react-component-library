@@ -1,10 +1,10 @@
 import React from 'react';
-import styles from '../../styles.css';
+import '../../styles.css';
 
-const YearView = (): JSX.element => {
+const YearView = (): JSX.Element => {
 
   return (
-    <div className={styles.yearView}>
+    <div className="yearView">
     </div>
   );
 };
