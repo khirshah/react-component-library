@@ -5,6 +5,7 @@ const MonthView = (): JSX.Element => {
 
   return (
     <div className="monthView">
+      Month view
     </div>
   );
 };
