@@ -6,17 +6,29 @@ import '../../styles.css';
 
 const Input = ({
   id,
+  handleChange,
   handleClick,
-} :
+  value,
+}:
 {
   id: string,
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
   handleClick: () => void,
+  value: string
 }): JSX.Element => {
-  
+  const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleChange(event);
+  };
+
   return (
     <div>
       <label />
-      <input id={`${id}-input`} className="inputField" />
+      <input
+        id={`${id}-input`}
+        className="inputField"
+        value={value}
+        onInput={handleInput}
+      />
       <button
         className="calendarButton"
         type="button"
