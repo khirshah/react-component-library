@@ -19,6 +19,8 @@ const DayView = ({
     ));
   };
 
+  // TODO: this will not work on februarys, that start on monday
+  // on non-leap years!! further tweak needed
   const daysBody = (dateString: string) => {
     const date = DateTime.fromISO(dateString);
     const firstDateDay = date.startOf('month').weekday;
@@ -26,12 +28,15 @@ const DayView = ({
     const prevMonth = date.minus({ months: 1 }).daysInMonth;
 
     const startDate = prevMonth - (firstDateDay - 2);
-    const prevMonthDays = Array.from({ length: firstDateDay - 1 }, (e, i) => i + startDate);
+    const prevMonthDays = Array.from({ length: firstDateDay - 1 }, (e, i) =>
+      <Day key={`day-prev-${i + startDate}`} id={(i + startDate).toString()} />);
+
+    const days = Array.from({ length: date.daysInMonth }, (e, i) =>
+      <Day key={`day-${i + 1}`} id={(i + 1).toString()} />);
 
     const endDate = 6 - (lastDateDay - 1);
-    const nextMonthDays = Array.from({ length: endDate }, (e, i) => i + 1);
-
-    const days = Array.from({ length: date.daysInMonth }, (e, i) => i + 1);
+    const nextMonthDays = Array.from({ length: endDate }, (e, i) =>
+      <Day key={`day-next-${i + 1}`} id={(i + 1).toString()} />);
 
     const displayedDays = [
       ...prevMonthDays,
@@ -39,46 +44,12 @@ const DayView = ({
       ...nextMonthDays,
     ];
 
-    const firstWeek = displayedDays.slice(0, 7);
-    const secondWeek = displayedDays.slice(7, 14);
-    const thirdWeek = displayedDays.slice(14, 21);
-    const fourthWeek = displayedDays.slice(21, 28);
-    const fifthWeek = displayedDays.slice(28, 35);
+    const weeks = Array.from({ length: 5 }, (e, i) =>
+      <tr key={`week-${i}`}>{displayedDays.slice(i * 7, i * 7 + 7)}</tr>);
 
-    return (
-      <>
-        <tr>
-          {firstWeek.map((day: number) => (
-            <Day key={`day-${day}`} id={(day).toString()} />
-          ))}
-        </tr>
-        <tr>
-          {secondWeek.map((day: number) => (
-            <Day key={`day-${day}`} id={(day).toString()} />
-          ))}
-        </tr>
-        <tr>
-          {thirdWeek.map((day: number) => (
-            <Day key={`day-${day}`} id={(day).toString()} />
-          ))}
-        </tr>
-        <tr>
-          {fourthWeek.map((day: number) => (
-            <Day key={`day-${day}`} id={(day).toString()} />
-          ))}
-        </tr>
-        <tr>
-          {fifthWeek.map((day: number) => (
-            <Day key={`day-${day}`} id={(day).toString()} />
-          ))}
-        </tr>
-      </>
-    );
-
-    return days.map((day: number, i: number) => (
-      <Day key={`day-${day}`} id={(i + 1).toString()} />
-    ));
+    return weeks;
   };
+
   return (
     <div className="dayView">
       <table>
